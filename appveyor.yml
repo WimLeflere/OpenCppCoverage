@@ -1,9 +1,10 @@
-cache:
-  - Build\ThirdParty\vcpkg
-  
 image: Visual Studio 2017
 
+cache:
+  - Build\ThirdParty\vcpkg
+
 install:
+  - cmd: echo Hello world
   - cmd: cd %APPVEYOR_BUILD_FOLDER%
   - cmd: BuildThirdPartyDependencies.bat
 
