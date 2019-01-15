@@ -1,0 +1,9 @@
+cache:
+  - Build\ThirdParty\vcpkg
+
+install:
+  - cmd: BuildThirdPartyDependencies.bat
+
+build:
+  parallel: true
+  project: CppCoverage.sln
