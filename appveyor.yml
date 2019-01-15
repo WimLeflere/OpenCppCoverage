@@ -1,5 +1,7 @@
 cache:
   - Build\ThirdParty\vcpkg
+  
+image: Visual Studio 2017
 
 install:
   - cmd: BuildThirdPartyDependencies.bat
