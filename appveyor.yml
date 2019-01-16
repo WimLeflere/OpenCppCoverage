@@ -1,13 +1,9 @@
+version: 1.0.{build}
 image: Visual Studio 2017
-
-cache:
-  - Build\ThirdParty\vcpkg
-
 install:
-  - cmd: echo Hello world
-  - cmd: cd %APPVEYOR_BUILD_FOLDER%
-  - cmd: BuildThirdPartyDependencies.bat
-
+- cmd: BuildThirdPartyDependencies.bat
+cache: Build\ThirdParty\vcpkg\installed
 build:
-  parallel: true
   project: CppCoverage.sln
+  parallel: true
+  verbosity: normal
