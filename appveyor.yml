@@ -1,6 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 install:
+- cmd: echo Hello AppVeyor
 - cmd: vcpkg install poco:x64-windows poco:x86-windows
 - cmd: vcpkg install protobuf:x64-windows protobuf:x86-windows
 - cmd: vcpkg install gtest:x64-windows gtest:x86-windows
