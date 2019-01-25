@@ -3,13 +3,13 @@ image: Visual Studio 2017
 environment:
   BOOST_ROOT: C:\Libraries\boost_1_67_0
 install:
-- cmd: echo Hello AppVeyor
 - cmd: vcpkg install poco:x64-windows poco:x86-windows
 - cmd: vcpkg install protobuf:x64-windows protobuf:x86-windows
 - cmd: vcpkg install gtest:x64-windows gtest:x86-windows
 - cmd: vcpkg install ctemplate:x64-windows ctemplate:x86-windows
 - cmd: vcpkg install range-v3:x64-windows range-v3:x86-windows
-- cmd: vcpkg integrate install
+- cmd: vcpkg export poco:x64-windows poco:x86-windows protobuf:x64-windows protobuf:x86-windows gtest:x64-windows gtest:x86-windows ctemplate:x64-windows ctemplate:x86-windows range-v3:x64-windows range-v3:x86-windows --nuget --nuget-id=ThirdParty --nuget-version=1.2.0
+- cmd: nuget install ThirdParty -OutputDirectory packages
 cache: c:\tools\vcpkg\installed\
 build:
   project: CppCoverage.sln
