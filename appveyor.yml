@@ -1,5 +1,7 @@
 version: 1.0.{build}
 image: Visual Studio 2017
+environment:
+  BOOST_ROOT: C:\Libraries\boost_1_67_0
 install:
 - cmd: echo Hello AppVeyor
 - cmd: vcpkg install poco:x64-windows poco:x86-windows
