@@ -8,7 +8,7 @@ install:
 - cmd: vcpkg install gtest:x86-windows
 - cmd: vcpkg install ctemplate:x86-windows
 - cmd: vcpkg install range-v3:x86-windows
-- cmd: vcpkg export poco:x86-windows protobuf:x86-windows gtest:x86-windows ctemplate:x86-windows range-range-v3:x86-windows --nuget --nuget-id=ThirdParty --nuget-version=1.2.0
+- cmd: vcpkg export poco:x86-windows protobuf:x86-windows gtest:x86-windows ctemplate:x86-windows range-v3:x86-windows --nuget --nuget-id=ThirdParty --nuget-version=1.2.0
 - cmd: nuget install ThirdParty -Source C:\Tools\vcpkg -OutputDirectory packages
 cache: C:\Tools\vcpkg\installed\
 build:
