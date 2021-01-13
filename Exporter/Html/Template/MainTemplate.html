@@ -11,11 +11,57 @@
         <script src="{{THIRD_PARTY_PATH}}/JQuery/jquery-1.11.1.min.js"></script>
         <script src="{{THIRD_PARTY_PATH}}/JQuery/jquery.tablesorter-2.0.5.min.js"></script>
         <script src="{{THIRD_PARTY_PATH}}/JQuery/jquery.tablesorter.staticrow.min.js"></script>
+        <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
     </head>
     <body>
     <script type="text/javascript">
+        function getColor(percentage) {
+            if(percentage > 95)
+            {
+                return 'Green';
+            }
+            else if (percentage > 80)
+            {
+                return 'YellowGreen';
+            }
+            else if (percentage > 60)
+            {
+                return 'Yellow';
+            }
+            else if (percentage > 40)
+            {
+                return 'Orange';
+            }
+            else if (percentage > 20)
+            {
+                return 'Red';
+            }
+            else
+            {
+                return 'DarkRed';
+            }
+        }
+
         $(document).ready(function ()
         {
+            var labels = [{{#ITEMS}}String.raw`{{NAME}}`.split('\\').pop(), {{/ITEMS}}];
+            labels.shift();
+            var values = [{{#ITEMS}} {{TOTAL_LINE}},{{/ITEMS}}];
+            values.shift();
+            var colors = [{{#ITEMS}} getColor({{COVER_RATE}}),{{/ITEMS}}];
+            colors.shift();
+            var parents = Array(labels.length).fill('');
+            
+            var data = [{
+                type: "treemap",
+                labels: labels,
+                parents: parents,
+                values: values,
+                marker: {colors: colors}
+            }];
+
+            Plotly.newPlot('treemap', data);
+
             var table = $("#rounded-corner");
             var firstRow = table.find('tbody tr:first');
             firstRow.addClass('static');
@@ -41,6 +87,7 @@
         <h4>
         {{MAIN_MESSAGE}}
         </h4>
+        <div id="treemap"></div>
         <table id="rounded-corner">
             <thead>
                 <tr>
